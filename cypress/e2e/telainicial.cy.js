@@ -15,6 +15,7 @@ describe('Teste de qualidade - Tela de incial', () => {
   });
 
   it('Usuário abre o menu para realizar o logout', () => {
+    //bug encontrado: O menu do usuário não é aberto
       cy.contains('button', 'Candidato').should('be.visible').click();
       cy.contains('Logout').should('be.visible');
   });
@@ -33,13 +34,14 @@ describe('Teste de qualidade - Tela de incial', () => {
       cy.url().should('include', '/dashboard/campanha/bancos-de-dados');
   });
 
-  it('Usuário abre o menu principal e acessa a tela de Banco de dados', () => {
+  it('Usuário abre o menu principal e acessa a tela de ColmeIA Forms', () => {
       cy.get('a[routerlink="/dashboard/campanha"]').click();
       cy.contains('a', 'Colmeia Forms').should('be.visible').click();
       cy.url().should('include', '/dashboard/campanha/colmeia-forms');
   });
 
   it('Usuário abre e fecha o menu lateral ao clicar no ícone da campanha', () => {
+    //Bug encontrado: O menu não fecha após abertura
     cy.get('a[routerlink="/dashboard/campanha"]').click();
     cy.url().should('include', '/dashboard/campanha');
     cy.contains('h3', 'Campanha').should('be.visible');

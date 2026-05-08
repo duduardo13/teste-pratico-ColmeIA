@@ -8,6 +8,7 @@ describe('Teste de qualidade - Tela de Login', () => {
   });
 
   it('Usuário realiza o login com sucesso', () => {
+    //Bug encontrado: mensagem de erro apresentada incorretamente
       cy.get('input[type="email"]').type(usuario.email);
       cy.get('input[type="password"]').type(usuario.senha);
       cy.get('button[type="submit"]').click();
@@ -57,6 +58,7 @@ describe('Teste de qualidade - Tela de Login', () => {
   });
 
   it('Usuário clica em esqueci a senha e é redicionado a página correspondente', () => {
+    //Bug encontrado: redirecionamento não é realizado
     cy.contains('Esqueceu sua senha?').click();
     cy.wait(200);
     cy.url().should('include', '/forgot-password');

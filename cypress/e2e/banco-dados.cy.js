@@ -66,6 +66,7 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
     });
 
     it('Usuário arquiva o registro e verifica se está na lista de arquivados', () => {
+        //Bug encontrado: Não apresenta registros arquivados
         cy.contains('button', 'Criar').click();
         cy.contains('h2', 'Adicionar novo item').should('be.visible');
         cy.get('input[placeholder="Nome do item"]').type('automatizado');
@@ -92,11 +93,11 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
 
         const cabecalho = cy.get('input[placeholder="Pesquisar"]').closest('.flex.justify-between');
         
-        cabecalho.find('button[variant="icon"]').first().as('botaoAlternarListagem').click();
+        cabecalho.find('button[variant="icon"]').first().as('btnAlternaList').click();
 
         cy.contains('h3', 'Itens Arquivados').should('be.visible');
         cy.contains('tr', 'automatizado').should('not.exist');
-        cy.get('@botaoAlternarListagem').click();
+        cy.get('@btnAlternaList').click();
         cy.contains('h3', 'Itens Arquivados').should('not.exist');
         cy.contains('h2', 'Bancos de dados').should('be.visible');
         cy.contains('tr', 'automatizado').should('be.visible');
@@ -105,7 +106,7 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
     it('Usuário recarrega a tabela e mantem os dados na listagem', () => {
         //intepreto como um botão de refresh, logo o cenário busca atender acreditando essa ser a 
         //funcionalidade correta
-
+        //Bug encontrado: Os dados não persistem após clicar no botão
         cy.contains('button', 'Criar').click();
         cy.contains('h2', 'Adicionar novo item').should('be.visible');
         cy.get('input[placeholder="Nome do item"]').type('automatizado');
@@ -117,6 +118,7 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
     });
 
     it('Usuário tenta cadastrar dois registros iguais', () => {
+        //bug encontrado: Permite duplicidade
         const duplicado = 'repetido'
 
         cy.contains('button', 'Criar').click();
@@ -133,7 +135,8 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
     it('Usuário verifica se todos os registros são legíveis', () => {
         //Notou-se que a tabela suporta somente alguns registros dependendo da resolução da tela,
         // em meus testes variando o tamanho do monitor, consegui visualizar no maximo 15 registros
-        // caso necessário, adaptar linhas 138 e 144 para suprir a quantidade necessária.
+        // caso necessário, adaptar linhas 141 e 147 para suprir a quantidade necessária.
+        //bug encontrado: Não apresenta todos os registro na tabela por falta de scroll vertical
 
         for (let i = 1; i <= 15; i++) {
             cy.contains('button', 'Criar').click();
