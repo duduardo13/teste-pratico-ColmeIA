@@ -27,6 +27,7 @@ Durante a execução da automação, foram identificadas inconformidades crític
 
 #### **Autenticação e Acesso**
 * **Falha no Login:** O sistema exibe mensagem de erro ("Credenciais incorretas") mesmo ao inserir dados válidos presentes nas fixtures.
+* **Falha Esqueci a senha:** O sistema não redireciona para página de recuperação de senha.
 * **Menu do Usuário:** O dropdown de perfil (botão "Candidato") não é renderizado após o clique, impedindo o acesso a configurações e logout.
 
 #### **Funcionalidades e Regras de Negócio**
