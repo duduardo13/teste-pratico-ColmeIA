@@ -31,7 +31,7 @@ describe('Teste de qualidade - Tela de banco de dados', () => {
         cy.get('input[type="search"][placeholder="Pesquisar"]').should('have.value', '')
     });
 
-    it('Deve criar um novo banco de dados e validar na tabela', () => {
+    it('Usuário cria um novo registro e valida na tabela', () => {
         const dataAtual = new Date();
         const ano = dataAtual.getFullYear();
         const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
