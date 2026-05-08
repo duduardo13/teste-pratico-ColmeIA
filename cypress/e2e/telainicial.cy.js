@@ -39,7 +39,7 @@ describe('Teste de qualidade - Tela de incial', () => {
       cy.url().should('include', '/dashboard/campanha/colmeia-forms');
   });
 
-  it('Deve abrir e fechar o menu lateral ao clicar no ícone da campanha', () => {
+  it('Usuário abre e fecha o menu lateral ao clicar no ícone da campanha', () => {
     cy.get('a[routerlink="/dashboard/campanha"]').click();
     cy.url().should('include', '/dashboard/campanha');
     cy.contains('h3', 'Campanha').should('be.visible');
